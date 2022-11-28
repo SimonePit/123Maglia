@@ -3,7 +3,7 @@ import { RootStackScreenProps } from '../types';
 import {RegisterUser} from '../api/RegistrationService';
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { ScrollView } from 'react-native'
+import { ScrollView,Alert} from 'react-native'
 import { Input, Icon } from '@rneui/themed';
 import {
     StyleSheet,
@@ -24,16 +24,29 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
     const [codFiscale, setCodFiscale] = useState("");
 
     async function DoRegistration(){
-        var jsonInput = {
-            "nome":nome,
-            "cognome":cognome,
-            "email":email,
-            "pwd":password,
-            "telefono":numeroTel,
-            "codFiscale":codFiscale,
-            "indirizzo":indirizzo
+        if(password === confPassword){
+            var jsonInput = {
+                "nome":nome,
+                "cognome":cognome,
+                "email":email,
+                "pwd":password,
+                "telefono":numeroTel,
+                "codFiscale":codFiscale,
+                "indirizzo":indirizzo
+            }
+            var res = await RegisterUser(jsonInput);
+            if(res.Result){
+                Alert.alert("Conferma", "Registrazione avvenuta con successo riceverai una mail con i dettagli");
+                navigation.goBack();
+            }
+            else{
+                Alert.alert("Errore", res.msg);
+            }
         }
-        var res = await RegisterUser(jsonInput);
+        else{
+            Alert.alert("Errore", "Le password inserite non corrispondono");
+        }
+        
     }
 
     return (

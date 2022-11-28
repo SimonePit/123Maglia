@@ -19,13 +19,20 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  StackCalculation:undefined;
+};
+export type CalculationStackParamList = {
+  Calculation:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
   RootStackParamList,
   Screen
 >;
-
+export type CalculationStackScreenProps<Screen extends keyof CalculationStackParamList> = NativeStackScreenProps<
+  CalculationStackParamList,
+  Screen
+>;
 export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;

@@ -1,8 +1,8 @@
 import global from '../constants/Config'
 
 export async function RegisterUser(dataInput) {
-  var a = global.LoginBaseUrl;
-  var res = await fetch(global.LoginBaseUrl + '/sartoria/registraSarto', {
+  var a = global.BASE_URL;
+  var res = await fetch(a + '/sartoria/registraSarto', {
     method: 'POST',
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -23,4 +23,5 @@ export async function RegisterUser(dataInput) {
   } catch (error) {
     var a = error;
   }
+  return response;
 }

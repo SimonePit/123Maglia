@@ -12,13 +12,14 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import CalculationScreen from '../screens/CalculationScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps,CalculationStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -43,11 +44,22 @@ function RootNavigator() {
       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Registration' component={RegistrationScreen} options={{ title:"Registrazione" }} />
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="StackCalculation" component={CalculationNavigator}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
+  );
+}
+
+const StackCalculation = createNativeStackNavigator<CalculationStackParamList>();
+
+function CalculationNavigator() {
+  return (
+    <StackCalculation.Navigator>
+      <StackCalculation.Screen name="Calculation" component={CalculationScreen} options={{ title:"Calcola" }}/>
+    </StackCalculation.Navigator>
   );
 }
 

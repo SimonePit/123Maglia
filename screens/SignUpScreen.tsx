@@ -2,18 +2,41 @@ import { Text, View } from '../components/Themed';
 import { RootStackScreenProps } from '../types';
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
+import globalVariables from '../constants/Config'
 import { Input, Icon } from '@rneui/themed';
 import {
   StyleSheet,
   Image,
   Button,
+  Alert,
   TouchableOpacity,
 } from "react-native";
+import {DoLogin} from '../api/LoginService';
 
 export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignUp'>) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [spinner,setSpinner]=useState(false);
+  async function loginPressed () {
+    if (email != '' && password != '') {
+      setSpinner(true);
+        var res = await DoLogin(email, password);
+        console.log("RES LOGIN: " + res)
+        if (!res.result) {
+            Alert.alert("Attenzione", res.msg);
+        }
+        else {
+            //StoreCredential(this.state.username, this.state.password, this.state.rememberCredential);
+            globalVariables.IS_LOGGED_IN = true;
+            globalVariables.Username = email;
+            navigation.navigate("StackCalculation");
+        }
+    }
+    else {
+        Alert.alert("Attenzione", "Inserire le credenziali di accesso");
+    }
+    setSpinner(false);
+}
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../assets/images/logo.jpg")} />
@@ -56,7 +79,7 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
         <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginBtn}>
+      <TouchableOpacity style={styles.loginBtn} onPress={loginPressed}>
         <Text style={styles.loginText}>LOGIN</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{marginTop:15}} onPress={() => navigation.navigate('Registration')}>
