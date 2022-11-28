@@ -52,6 +52,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholder="Nome"
                     placeholderTextColor="#003f5c"
                     onChangeText={(nome) => setNome(nome)}
+                    returnKeyType={"next"}
                 />
                 <Input
                     style={styles.TextInput}
@@ -65,6 +66,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholder="Cognome"
                     placeholderTextColor="#003f5c"
                     onChangeText={(cognome) => setCognome(cognome)}
+                    returnKeyType={"next"}
                 />
                 <Input
                     style={styles.TextInput}
@@ -78,6 +80,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholder="Email"
                     placeholderTextColor="#003f5c"
                     onChangeText={(email) => setEmail(email)}
+                    returnKeyType={"next"}
                 />
                 <Input
                     style={styles.TextInput}
@@ -91,6 +94,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholder="Numero di telefono"
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setNumeroTel(str)}
+                    returnKeyType={"next"}
                 />
                 <Input
                     style={styles.TextInput}
@@ -104,6 +108,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholder="Codice Fiscale"
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setCodFiscale(str)}
+                    returnKeyType={"next"}
                 />
                 <Input
                     style={styles.TextInput}
@@ -117,6 +122,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholder="Indirizzo"
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setIndirizzo(str)}
+                    returnKeyType={"next"}
                 />
                 <Input
                     style={styles.TextInput}
@@ -131,6 +137,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     secureTextEntry={true}
                     onChangeText={(password) => setPassword(password)}
+                    returnKeyType={"next"}
                 />
                 <Input
                 style={styles.TextInput}
@@ -145,6 +152,7 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                 placeholderTextColor="#003f5c"
                 secureTextEntry={true}
                 onChangeText={(password) => setConfPassword(password)}
+                returnKeyType={"go"}
             />
             </ScrollView>
 
