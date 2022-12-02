@@ -1,8 +1,8 @@
 {
   "expo": {
-    "slug": "SartiApp",
-    "name": "Sarti",
+    "slug": "scuolanetgenitori",
+    "name": "scuolanetgenitori",
     "sdkVersion": "46.0.0"
   },
-  "name": "Sarti"
+  "name": "scuolanetgenitori"
 }

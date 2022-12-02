@@ -65,7 +65,7 @@ function splitUrl(url) {
 
 async function authenticate() {
   var response = { result: false, msg: '' }
-  var url = global.BASE_URL + '/NegoziWeb/NegoziApp/login/authenticate';
+  var url = global.URL + '/login/authenticate';
   var res = await fetch(url, {
     // mode: 'no-cors',
     credentials: "same-origin",
@@ -161,7 +161,8 @@ async function checkedHashedPsw(password, hashedPsw, username, url) {
         response.result = true;
       }
       else {
-        response.result = resCookie.msg;
+        response.msg=resCookie.msg
+        response.result = false;
       }
       return response;
     }

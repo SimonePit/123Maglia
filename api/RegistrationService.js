@@ -2,7 +2,8 @@ import global from '../constants/Config'
 
 export async function RegisterUser(dataInput) {
   var a = global.BASE_URL;
-  var res = await fetch(a + '/sartoria/registraSarto', {
+  var url = a + '/sartoria/registraSarto';
+  var res = await fetch(url, {
     method: 'POST',
     headers: {
       'Accept': 'application/json, text/plain, */*',
