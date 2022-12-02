@@ -1,9 +1,9 @@
 import { Text, View, } from '../components/Themed';
 import { RootStackScreenProps } from '../types';
-import {RegisterUser} from '../api/RegistrationService';
+import { RegisterUser } from '../api/RegistrationService';
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { ScrollView,Alert} from 'react-native'
+import { createRef, useRef, useState } from "react";
+import { ScrollView, Alert } from 'react-native'
 import { Input, Icon } from '@rneui/themed';
 import {
     StyleSheet,
@@ -23,42 +23,51 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
     const [numeroTel, setNumeroTel] = useState("");
     const [codFiscale, setCodFiscale] = useState("");
 
-    async function DoRegistration(){
-        if(password === confPassword){
+    async function DoRegistration() {
+        if (password === confPassword) {
             var jsonInput = {
-                "nome":nome,
-                "cognome":cognome,
-                "email":email,
-                "pwd":password,
-                "telefono":numeroTel,
-                "codFiscale":codFiscale,
-                "indirizzo":indirizzo
+                "nome": nome,
+                "cognome": cognome,
+                "email": email,
+                "pwd": password,
+                "telefono": numeroTel,
+                "codFiscale": codFiscale,
+                "indirizzo": indirizzo
             }
             var res = await RegisterUser(jsonInput);
-            if(res.Result){
+            if (res.Result) {
                 Alert.alert("Conferma", "Registrazione avvenuta con successo riceverai una mail con i dettagli");
                 navigation.goBack();
             }
-            else{
+            else {
                 Alert.alert("Errore", res.msg);
             }
         }
-        else{
+        else {
             Alert.alert("Errore", "Le password inserite non corrispondono");
         }
-        
-    }
 
+    }
+    const inputCognome = useRef(null);
+    const inputEmail = useRef(null);
+    const inputTel = useRef(null);
+    const inputCodFisc = useRef(null);
+    const inputAddress = useRef(null);
+    const inputPsw = useRef(null);
+    const inputConfPas = useRef(null);
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={require("../assets/images/logo.jpg")} />
+            <View style={styles.Middle}>
+                <Text style={styles.LoginText}>Registrati</Text>
+            </View>
             <ScrollView style={styles.inputView}>
                 <Input
                     style={styles.TextInput}
+                    autoFocus={true}
                     leftIcon={
                         <Icon
-                            name='mail-open-outline'
-                            type='ionicon'
+                            name='user'
+                            type='antdesign'
                             size={24}
                             color='black'
                         />}
@@ -66,13 +75,18 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(nome) => setNome(nome)}
                     returnKeyType={"next"}
+                    // onEndEditing={() => {
+                    //     // @ts-ignore
+                    //     inputCognome.current.focus();
+                    // }}
                 />
                 <Input
+                    ref={inputCognome}
                     style={styles.TextInput}
                     leftIcon={
                         <Icon
-                            name='mail-open-outline'
-                            type='ionicon'
+                            name='user'
+                            type='antdesign'
                             size={24}
                             color='black'
                         />}
@@ -80,8 +94,13 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(cognome) => setCognome(cognome)}
                     returnKeyType={"next"}
+                    onBlur={() => {
+                        // @ts-ignore
+                        inputEmail.current.focus()
+                    }}
                 />
                 <Input
+                    ref={inputEmail}
                     style={styles.TextInput}
                     leftIcon={
                         <Icon
@@ -94,13 +113,18 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(email) => setEmail(email)}
                     returnKeyType={"next"}
+                    onBlur={() => {
+                        // @ts-ignore
+                        inputTel.current.focus()
+                    }}
                 />
                 <Input
+                    ref={inputTel}
                     style={styles.TextInput}
                     leftIcon={
                         <Icon
-                            name='mail-open-outline'
-                            type='ionicon'
+                            name='smartphone'
+                            type='materialIcons'
                             size={24}
                             color='black'
                         />}
@@ -108,13 +132,18 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setNumeroTel(str)}
                     returnKeyType={"next"}
+                    onBlur={() => {
+                        // @ts-ignore
+                        inputCodFisc.current.focus()
+                    }}
                 />
                 <Input
+                    ref={inputCodFisc}
                     style={styles.TextInput}
                     leftIcon={
                         <Icon
-                            name='mail-open-outline'
-                            type='ionicon'
+                            name='user'
+                            type='antdesign'
                             size={24}
                             color='black'
                         />}
@@ -122,13 +151,18 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setCodFiscale(str)}
                     returnKeyType={"next"}
+                    onBlur={() => {
+                        // @ts-ignore
+                        inputAddress.current.focus()
+                    }}
                 />
                 <Input
+                    ref={inputAddress}
                     style={styles.TextInput}
                     leftIcon={
                         <Icon
-                            name='mail-open-outline'
-                            type='ionicon'
+                            name='home'
+                            type='antdesign'
                             size={24}
                             color='black'
                         />}
@@ -136,8 +170,13 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setIndirizzo(str)}
                     returnKeyType={"next"}
+                    onBlur={() => {
+                        // @ts-ignore
+                        inputPsw.current.focus()
+                    }}
                 />
                 <Input
+                    ref={inputPsw}
                     style={styles.TextInput}
                     leftIcon={
                         <Icon
@@ -151,26 +190,31 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     secureTextEntry={true}
                     onChangeText={(password) => setPassword(password)}
                     returnKeyType={"next"}
+                    onBlur={() => {
+                        // @ts-ignore
+                        inputConfPas.current.focus()
+                    }}
                 />
                 <Input
-                style={styles.TextInput}
-                leftIcon={
-                    <Icon
-                        name='lock-closed-outline'
-                        type='ionicon'
-                        size={24}
-                        color='black'
-                    />}
-                placeholder="Conferma password"
-                placeholderTextColor="#003f5c"
-                secureTextEntry={true}
-                onChangeText={(password) => setConfPassword(password)}
-                returnKeyType={"go"}
-            />
+                    ref={inputConfPas}
+                    style={styles.TextInput}
+                    leftIcon={
+                        <Icon
+                            name='lock-closed-outline'
+                            type='ionicon'
+                            size={24}
+                            color='black'
+                        />}
+                    placeholder="Conferma password"
+                    placeholderTextColor="#003f5c"
+                    secureTextEntry={true}
+                    onChangeText={(password) => setConfPassword(password)}
+                    returnKeyType={"go"}
+                />
             </ScrollView>
 
             <TouchableOpacity style={styles.loginBtn} onPress={DoRegistration}>
-                <Text style={styles.loginText}>Registrati</Text>
+                <Text>Registrati</Text>
             </TouchableOpacity>
         </View>
     );
@@ -182,8 +226,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: "center",
     },
-    loginText: {
-
+    LoginText: {
+        marginTop: 30,
+        fontSize: 30,
+        fontWeight: 'bold',
+    },
+    Middle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 30
     },
     image: {
         width: 150,
@@ -193,7 +244,7 @@ const styles = StyleSheet.create({
 
     inputView: {
         backgroundColor: "white",
-        width: "70%",
+        width: "90%",
         marginBottom: 20,
     },
 
@@ -219,7 +270,8 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 40,
+        marginTop: 20,
+        marginBottom: 30,
         backgroundColor: "#0066ff",
     },
 });
