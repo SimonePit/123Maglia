@@ -2,6 +2,7 @@ import { Text, View } from '../components/Themed';
 import { CalculationStackScreenProps } from '../types';
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
+import * as calcolaService from '../api/CalcolaServices'
 import globalVariables from '../constants/Config'
 import { Input, Icon } from '@rneui/themed';
 import {
@@ -12,68 +13,60 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function CalculationScreen({ navigation }: CalculationStackScreenProps<'Calculation'>) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function InserisciModelloScreen({ navigation }: CalculationStackScreenProps<'InserisciModello'>) {
+  const [titolo, setTitolo] = useState("");
+  const [descrizione, setDescrizione] = useState("");
   const [spinner, setSpinner] = useState(false);
-  async function CalcolaPressed() {
-
+  async function InserisciModelloClicked() {
+    var input = {
+      titolo:titolo,
+      descrizione:descrizione
+    }
+    var res = await calcolaService.InsertNewModel(input);
+    if(res.Result){
+      //GO TO NEXT PAGE
+    }
     setSpinner(false);
   }
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../assets/images/logo.jpg")} />
-
       <StatusBar style="auto" />
-      <View style={styles.inputView}>
+      <View style={{ width: '100%', marginTop: 50 }}>
+        <Text style={{ fontSize: 22,fontWeight:'bold', marginBottom: 80 }}>Descrizione inserisici modello*</Text>
         <Input
           style={styles.TextInput}
-          leftIcon={
-            <Icon
-              name='mail-open-outline'
-              type='ionicon'
-              size={24}
-              color='black'
-            />}
-          placeholder="Email"
+          placeholder="Titolo"
           placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(titolo) => setTitolo(titolo)}
+        />
+        <Input
+          style={styles.TextInput}
+          placeholder="Descrizione"
+          numberOfLines={4}
+          multiline={true}
+          placeholderTextColor="#003f5c"
+          onChangeText={(desc) => setDescrizione(desc)}
         />
       </View>
 
-      <View style={styles.inputView}>
-        <Input
-          style={styles.TextInput}
-          leftIcon={
-            <Icon
-              name='lock-closed-outline'
-              type='ionicon'
-              size={24}
-              color='black'
-            />}
-          placeholder="Password"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>CALCOLA</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress={InserisciModelloClicked}>
+        <Text style={styles.loginText}>Avanti</Text>
       </TouchableOpacity>
-
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 30,
+    height: '100%',
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: 'space-between'
   },
   loginText: {
-
+    color:'white',
+    fontSize:18
   },
   image: {
     width: 150,
@@ -83,14 +76,13 @@ const styles = StyleSheet.create({
 
   inputView: {
     backgroundColor: "white",
-    width: "70%",
+    width: "90%",
     height: 45,
     marginBottom: 20,
     alignItems: "center",
   },
 
   TextInput: {
-    height: 50,
     flex: 1,
     padding: 10,
     marginLeft: 20,
@@ -111,7 +103,6 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
     backgroundColor: "#0066ff",
   },
 });

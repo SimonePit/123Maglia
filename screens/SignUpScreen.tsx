@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 
   inputView: {
     backgroundColor: "white",
-    width: "70%",
+    width: "90%",
     height: 45,
     marginBottom: 20,
     alignItems: "center",

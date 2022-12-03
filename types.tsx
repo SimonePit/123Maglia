@@ -22,6 +22,7 @@ export type RootStackParamList = {
   StackCalculation:undefined;
 };
 export type CalculationStackParamList = {
+  InserisciModello:undefined;
   Calculation:undefined;
 };
 

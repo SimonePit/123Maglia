@@ -94,10 +94,10 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(cognome) => setCognome(cognome)}
                     returnKeyType={"next"}
-                    onBlur={() => {
-                        // @ts-ignore
-                        inputEmail.current.focus()
-                    }}
+                    // onBlur={() => {
+                    //     // @ts-ignore
+                    //     inputEmail.current.focus()
+                    // }}
                 />
                 <Input
                     ref={inputEmail}
@@ -113,10 +113,10 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(email) => setEmail(email)}
                     returnKeyType={"next"}
-                    onBlur={() => {
-                        // @ts-ignore
-                        inputTel.current.focus()
-                    }}
+                    // onBlur={() => {
+                    //     // @ts-ignore
+                    //     inputTel.current.focus()
+                    // }}
                 />
                 <Input
                     ref={inputTel}
@@ -132,10 +132,10 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setNumeroTel(str)}
                     returnKeyType={"next"}
-                    onBlur={() => {
-                        // @ts-ignore
-                        inputCodFisc.current.focus()
-                    }}
+                    // onBlur={() => {
+                    //     // @ts-ignore
+                    //     inputCodFisc.current.focus()
+                    // }}
                 />
                 <Input
                     ref={inputCodFisc}
@@ -151,10 +151,10 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setCodFiscale(str)}
                     returnKeyType={"next"}
-                    onBlur={() => {
-                        // @ts-ignore
-                        inputAddress.current.focus()
-                    }}
+                    // onBlur={() => {
+                    //     // @ts-ignore
+                    //     inputAddress.current.focus()
+                    // }}
                 />
                 <Input
                     ref={inputAddress}
@@ -170,10 +170,10 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     placeholderTextColor="#003f5c"
                     onChangeText={(str) => setIndirizzo(str)}
                     returnKeyType={"next"}
-                    onBlur={() => {
-                        // @ts-ignore
-                        inputPsw.current.focus()
-                    }}
+                    // onBlur={() => {
+                    //     // @ts-ignore
+                    //     inputPsw.current.focus()
+                    // }}
                 />
                 <Input
                     ref={inputPsw}
@@ -190,10 +190,10 @@ export default function RegistrationScreen({ navigation }: RootStackScreenProps<
                     secureTextEntry={true}
                     onChangeText={(password) => setPassword(password)}
                     returnKeyType={"next"}
-                    onBlur={() => {
-                        // @ts-ignore
-                        inputConfPas.current.focus()
-                    }}
+                    // onBlur={() => {
+                    //     // @ts-ignore
+                    //     inputConfPas.current.focus()
+                    // }}
                 />
                 <Input
                     ref={inputConfPas}

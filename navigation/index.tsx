@@ -21,7 +21,7 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps,CalculationStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-
+import InserisciModelloScreen from './../screens/CalculationScreen';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -58,7 +58,7 @@ const StackCalculation = createNativeStackNavigator<CalculationStackParamList>()
 function CalculationNavigator() {
   return (
     <StackCalculation.Navigator>
-      <StackCalculation.Screen name="Calculation" component={CalculationScreen} options={{ title:"Calcola" }}/>
+      <StackCalculation.Screen name="InserisciModello" component={InserisciModelloScreen} options={{ title:"Inserisci modello" }}/>
     </StackCalculation.Navigator>
   );
 }
