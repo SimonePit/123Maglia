@@ -13,6 +13,30 @@ declare global {
   }
 }
 
+export type DataInputCalcola={
+  idCM:string
+  CampioneFerri :string
+  NrPuntiCampione:string
+  NrFerriCampione:string
+  MisuraTorace:string
+  MisuraAltezza:string
+  MisuraSpalle:string
+  MisuraManica:string
+}
+export type DataOutputCalcola={
+        id: number
+        Torace: number,
+        ToraceDavanti: number,
+        ToraceDietro: number,
+        Spalle: number,
+        PuntiCalareScalfo: number,
+        PuntiCalareScalfoDx: number,
+        PuntiCalareScalfoSx: number,
+        Scollo: number,
+        GiroManica: number,
+        InclinaturaSpalle: number,
+}
+
 export type RootStackParamList = {
   SignUp:undefined;
   Registration:undefined;
@@ -23,7 +47,7 @@ export type RootStackParamList = {
 };
 export type CalculationStackParamList = {
   InserisciModello:undefined;
-  Calculation:undefined;
+  Calculation:{idCM:number}
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

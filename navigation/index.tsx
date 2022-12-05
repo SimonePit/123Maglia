@@ -12,7 +12,7 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import CalculationScreen from '../screens/CalculationScreen';
+import CalculationScreen from '../screens/InserisciModelloScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -21,7 +21,8 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps,CalculationStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
-import InserisciModelloScreen from './../screens/CalculationScreen';
+import InserisciModelloScreen from '../screens/InserisciModelloScreen';
+import InputCalcolaScreen from '../screens/InputCalcolaScreen';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -58,7 +59,8 @@ const StackCalculation = createNativeStackNavigator<CalculationStackParamList>()
 function CalculationNavigator() {
   return (
     <StackCalculation.Navigator>
-      <StackCalculation.Screen name="InserisciModello" component={InserisciModelloScreen} options={{ title:"Inserisci modello" }}/>
+      <StackCalculation.Screen name="InserisciModello" component={InserisciModelloScreen} options={{ title:"Crea carta modello" }}/>
+      <StackCalculation.Screen name="Calculation" component={InputCalcolaScreen} options={{ title:"Inserisci dati" }}/>
     </StackCalculation.Navigator>
   );
 }
