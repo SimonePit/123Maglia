@@ -36,16 +36,38 @@ export default function InserisciModelloScreen({ navigation }: CalculationStackS
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <View style={{ width: '100%', marginTop: 50 }}>
-        <Text style={{ fontSize: 22,fontWeight:'bold', marginBottom: 80 }}>Descrizione inserisici modello*</Text>
+      <View style={{ width: '100%', marginTop: 50 , alignItems:'center'}}>
+      <View style={{flexDirection: 'row', marginBottom:10}}>
+                <Icon
+              name='body-outline'
+              type='ionicon'
+              size={48}
+              color='black'
+            />
+        <Text style={{ fontSize: 22,fontWeight:'bold', marginLeft: 15 , marginTop:15, marginBottom: 80 }}>Crea carta modello*</Text>
+        </View>
         <Input
           style={styles.TextInput}
+          leftIcon={
+            <Icon 
+              name='bookmark-outline'
+              type='ionicon'
+              size={24}
+              color='black'
+            />}
           placeholder="Titolo"
           placeholderTextColor="#003f5c"
           onChangeText={(titolo) => setTitolo(titolo)}
         />
         <Input
           style={styles.TextInput}
+          leftIcon={
+            <Icon 
+              name='document-text-outline'
+              type='ionicon'
+              size={24}
+              color='black'
+            />}
           placeholder="Descrizione"
           numberOfLines={4}
           multiline={true}

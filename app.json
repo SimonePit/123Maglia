@@ -1,8 +1,41 @@
 {
   "expo": {
-    "slug": "scuolanetgenitori",
-    "name": "scuolanetgenitori",
-    "sdkVersion": "46.0.0"
+    "slug": "123Maglia",
+    "name": "1,2,3 Maglia",
+    "sdkVersion": "46.0.0",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.1",
+    "updates": {
+      "fallbackToCacheTimeout": 10
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.easit.sarti",
+      "buildNumber": "1",
+      "icon":"./assets/images/appstoreicon.png",
+      "config": {
+      },
+      "infoPlist": {
+      }
+    },
+    "android": {
+      "package": "com.easit.sarti",
+      "versionCode": 1,
+      "useNextNotificationsApi":true,
+      "config": {
+      },
+      "permissions": [
+      ]
+    },
+    "description": ""
   },
-  "name": "scuolanetgenitori"
+  "name": "1,2,3 Maglia"
 }

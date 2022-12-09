@@ -15,13 +15,15 @@ declare global {
 
 export type DataInputCalcola={
   idCM:string
-  CampioneFerri :string
-  NrPuntiCampione:string
-  NrFerriCampione:string
-  MisuraTorace:string
-  MisuraAltezza:string
-  MisuraSpalle:string
-  MisuraManica:string
+  inCampioneFerri :string
+  inNrPuntiCampione:string
+  inPuntiCampioneCm:string
+  inNrFerriCampione:string
+  inFerriCampioneCm:string
+  inMisuraTorace:string
+  inMisuraAltezza:string
+  inMisuraSpalle:string
+  inMisuraManica:string
 }
 export type DataOutputCalcola={
         id: number
@@ -32,9 +34,12 @@ export type DataOutputCalcola={
         PuntiCalareScalfo: number,
         PuntiCalareScalfoDx: number,
         PuntiCalareScalfoSx: number,
-        Scollo: number,
+        StrPuntiCalareScalfoLato: string,
+        ScolloCentrale: number,
+        ScolloLaterale: number,
         GiroManica: number,
-        InclinaturaSpalle: number,
+        InclinaturaSpalleCentrale: number,
+        InclinaturaSpalleLaterale: number,
 }
 
 export type RootStackParamList = {
@@ -46,8 +51,23 @@ export type RootStackParamList = {
   StackCalculation:undefined;
 };
 export type CalculationStackParamList = {
-  InserisciModello:undefined;
   Calculation:{idCM:number}
+  OutputCalculation:{
+                    Torace: number,
+                    ToraceDavanti: number,
+                    ToraceDietro: number,
+                    Spalle: number,
+                    PuntiCalareScalfo: number,
+                    PuntiCalareScalfoDx: number,
+                    PuntiCalareScalfoSx: number,
+                    StrPuntiCalareScalfoLato:string,
+                    ScolloCentrale: number,
+                    ScolloLaterale: number,
+                    GiroManica: number,
+                    InclinaturaSpalleCentrale: number,
+                    InclinaturaSpalleLaterale: number,
+                  }
+  InserisciModello:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

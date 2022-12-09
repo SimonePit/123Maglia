@@ -16,83 +16,185 @@ import {
 
 export default function InputCalcolaScreen({ navigation, route }: CalculationStackScreenProps<'Calculation'>) {
     const idCM = route.params.idCM;
-    const [CampioneFerri, setCampioneFerri] = useState("");
-    const [MisuraAltezza, setMisuraAltezza] = useState("");
-    const [MisuraManica, setMisuraManica] = useState("");
-    const [MisuraSpalle, setMisuraSpalle] = useState("");
-    const [MisuraTorace, setMisuraTorace] = useState("");
-    const [NrFerriCampione, setNrFerriCampione] = useState("");
-    const [NrPuntiCampione, setNrPuntiCampione] = useState("");
+    const [inCampioneFerri, setCampioneFerri] = useState("5");
+    const [inMisuraAltezza, setMisuraAltezza] = useState("");
+    const [inMisuraManica, setMisuraManica] = useState("");
+    const [inMisuraSpalle, setMisuraSpalle] = useState("");
+    const [inMisuraTorace, setMisuraTorace] = useState("");
+    const [inNrFerriCampione, setNrFerriCampione] = useState("");
+    const [inFerriCampioneCm, setFerriCampioneCm] = useState("");
+    const [inNrPuntiCampione, setNrPuntiCampione] = useState("");
+    const [inPuntiCampioneCm, setPuntiCampioneCm] = useState("");
     const [spinner, setSpinner] = useState(false);
 
     async function Calcola() {
         var input: DataInputCalcola = {
             idCM: idCM.toString(),
-            CampioneFerri: CampioneFerri,
-            MisuraAltezza: MisuraAltezza,
-            MisuraManica: MisuraManica,
-            MisuraSpalle: MisuraSpalle,
-            MisuraTorace: MisuraTorace,
-            NrFerriCampione: NrFerriCampione,
-            NrPuntiCampione: NrPuntiCampione
+            inCampioneFerri: inCampioneFerri,
+            inMisuraAltezza: inMisuraAltezza,
+            inMisuraManica: inMisuraManica,
+            inMisuraSpalle: inMisuraSpalle,
+            inMisuraTorace: inMisuraTorace,
+            inNrFerriCampione: inNrFerriCampione,
+            inFerriCampioneCm: inFerriCampioneCm,
+            inNrPuntiCampione: inNrPuntiCampione,
+            inPuntiCampioneCm: inPuntiCampioneCm
         }
         var res = await calcolaService.CalcolaModello(input);
         setSpinner(false);
+        if(res.Result == 'OperationSuccess'){
+            navigation.navigate('OutputCalculation', {
+                    Torace: res.Torace,
+                    ToraceDavanti: res.ToraceDavanti,
+                    ToraceDietro: res.ToraceDietro,
+                    Spalle: res.Spalle,
+                    PuntiCalareScalfo: res.PuntiCalareScalfo,
+                    PuntiCalareScalfoDx: res.PuntiCalareScalfoDx,
+                    PuntiCalareScalfoSx: res.PuntiCalareScalfoSx,
+                    StrPuntiCalareScalfoLato:res.StrPuntiCalareScalfoLato,
+                    ScolloCentrale: res.ScolloCentrale,
+                    ScolloLaterale: res.ScolloLaterale,
+                    GiroManica: res.GiroManica,
+                    InclinaturaSpalleCentrale: res.InclinaturaSpalleCentrale,
+                    InclinaturaSpalleLaterale: res.InclinaturaSpalleLaterale,
+            });
+          }
+          else{
+            Alert.alert("Attenzione", res.msg);
+          }
     }
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
             <ScrollView style={{width:'90%'}}>
-                <View style={{alignItems:'center'}}>
-                <Text style={{ fontSize: 22, fontWeight: 'bold',marginBottom:15 }}>Inserisci i dati del campione*</Text>
-                    <Input
+                <View style={{alignItems:'center', marginBottom:10}}>
+                    <View style={{flexDirection: 'row', marginBottom:5}}>
+                        <Icon
+                        name='options-outline'
+                        type='ionicon'
+                        size={48}
+                        color='black'
+                        />
+                        <Text style={{ fontSize: 22, fontWeight: 'bold',marginLeft:5, marginBottom:15 , marginTop:10}}>Inserisci i dati del campione*</Text>
+                    </View>
+                   {/* <Input
                         style={styles.TextInput}
                         placeholder="Campione ferri"
                         keyboardType='number-pad'
                         placeholderTextColor="#003f5c"
                         onChangeText={(ferr) => setCampioneFerri(ferr)}
-                    />
-                    <Input
+                    /> */}
+                     <Input
                         style={styles.TextInput}
-                        placeholder="Misura altezza"
+                        leftIcon={
+                            <Icon 
+                              name='arrow-up'
+                              type='ionicon'
+                              size={24}
+                              color='black'
+                            />}
+                        placeholder="Misura altezza in cm"
                         keyboardType='number-pad'
                         placeholderTextColor="#003f5c"
                         onChangeText={(ferr) => setMisuraAltezza(ferr)}
                     />
                     <Input
                         style={styles.TextInput}
-                        placeholder="Misura manica"
+                        leftIcon={
+                            <Icon 
+                              name='git-merge-outline'
+                              type='ionicon'
+                              size={24}
+                              color='black'
+                            />}
+                        placeholder="Misura manica in cm"
                         keyboardType='number-pad'
                         placeholderTextColor="#003f5c"
                         onChangeText={(ferr) => setMisuraManica(ferr)}
                     />
                     <Input
                         style={styles.TextInput}
-                        placeholder="Misura spalle"
+                        leftIcon={
+                            <Icon 
+                              name='git-network-outline'
+                              type='ionicon'
+                              size={24}
+                              color='black'
+                            />}
+                        placeholder="Misura spalle in cm"
                         keyboardType='number-pad'
                         placeholderTextColor="#003f5c"
                         onChangeText={(ferr) => setMisuraSpalle(ferr)}
                     />
                     <Input
                         style={styles.TextInput}
-                        placeholder="Misura torace"
+                        leftIcon={
+                            <Icon 
+                              name='barbell-outline'
+                              type='ionicon'
+                              size={24}
+                              color='black'
+                            />}
+                        placeholder="Misura torace in cm"
                         keyboardType='number-pad'
                         placeholderTextColor="#003f5c"
                         onChangeText={(ferr) => setMisuraTorace(ferr)}
                     />
                     <Input
                         style={styles.TextInput}
+                        leftIcon={
+                            <Icon 
+                              name='close-outline'
+                              type='ionicon'
+                              size={24}
+                              color='black'
+                            />}
                         placeholder="Numero ferri campione"
                         keyboardType='number-pad'
                         placeholderTextColor="#003f5c"
                         onChangeText={(ferr) => setNrFerriCampione(ferr)}
                     />
                     <Input
+                    style={styles.TextInput}
+                    leftIcon={
+                        <Icon 
+                          name='close-outline'
+                          type='ionicon'
+                          size={24}
+                          color='black'
+                        />}
+                    placeholder="Campione ferri cm"
+                    keyboardType='number-pad'
+                    placeholderTextColor="#003f5c"
+                    onChangeText={(ferr) => setFerriCampioneCm(ferr)}
+                    />
+                    <Input
                         style={styles.TextInput}
                         placeholder="Numero punti campione"
+                        leftIcon={
+                            <Icon 
+                              name='ellipsis-vertical'
+                              type='ionicon'
+                              size={24}
+                              color='black'
+                            />}
                         keyboardType='number-pad'
                         placeholderTextColor="#003f5c"
                         onChangeText={(ferr) => setNrPuntiCampione(ferr)}
+                    />
+                    <Input
+                        style={styles.TextInput}
+                        placeholder="Punti campione cm"
+                        leftIcon={
+                            <Icon 
+                              name='ellipsis-vertical'
+                              type='ionicon'
+                              size={24}
+                              color='black'
+                            />}
+                        keyboardType='number-pad'
+                        placeholderTextColor="#003f5c"
+                        onChangeText={(ferr) => setPuntiCampioneCm(ferr)}
                     />
                 <TouchableOpacity style={styles.loginBtn} onPress={Calcola}>
                     <Text style={styles.loginText}>Calcola ora</Text>
@@ -116,7 +218,8 @@ const styles = StyleSheet.create({
     },
 
     TextInput: {
-        marginBottom:10
+        marginBottom:10,
+        marginLeft: 10,
     },
 
     forgot_button: {

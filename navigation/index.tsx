@@ -23,6 +23,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps,CalculationSta
 import LinkingConfiguration from './LinkingConfiguration';
 import InserisciModelloScreen from '../screens/InserisciModelloScreen';
 import InputCalcolaScreen from '../screens/InputCalcolaScreen';
+import OutputCalcolaScreen from '../screens/OutputCalcolaScreen';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -59,8 +60,9 @@ const StackCalculation = createNativeStackNavigator<CalculationStackParamList>()
 function CalculationNavigator() {
   return (
     <StackCalculation.Navigator>
-      <StackCalculation.Screen name="InserisciModello" component={InserisciModelloScreen} options={{ title:"Crea carta modello" }}/>
       <StackCalculation.Screen name="Calculation" component={InputCalcolaScreen} options={{ title:"Inserisci dati" }}/>
+      <StackCalculation.Screen name="OutputCalculation" component={OutputCalcolaScreen} options={{ title:"Risultato calcoli misure" }}/>
+      <StackCalculation.Screen name="InserisciModello" component={InserisciModelloScreen} options={{ title:"Crea carta modello" }}/>
     </StackCalculation.Navigator>
   );
 }

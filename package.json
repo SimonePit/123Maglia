@@ -1,5 +1,5 @@
 {
-  "name": "scuolanetgenitori",
+  "name": "1_2_3 Maglia",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "@react-navigation/native-stack": "^6.1.0",
     "@rneui/base": "0.0.0-edge.2",
     "@rneui/themed": "0.0.0-edge.2",
-    "expo": "~46.0.13",
+    "expo": "^46.0.17",
     "expo-asset": "~8.6.1",
     "expo-constants": "~13.2.4",
     "expo-font": "~10.2.1",

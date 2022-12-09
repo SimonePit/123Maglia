@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import {DoLogin} from '../api/LoginService';
+import {GetModel} from '../api/CalcolaServices'
 
 export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignUp'>) {
   const [email, setEmail] = useState("");
@@ -29,7 +30,24 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
             //StoreCredential(this.state.username, this.state.password, this.state.rememberCredential);
             globalVariables.IS_LOGGED_IN = true;
             globalVariables.Username = email;
-            navigation.navigate("StackCalculation");
+//            navigation.navigate("StackCalculation");
+              var input = {
+                idCM:0
+              }
+              var res = await GetModel(input);
+              if(res.Result){
+                var ivalue = res.idCM;
+                console.log("VALORE idCM " + ivalue);
+                //navigation.navigate('Calculation', {idCM: res.idCM});
+                navigation.navigate("StackCalculation",{
+                                                            screen: 'Calculation',
+                                                            params: { idCM: res.idCM },
+                                                          }); 
+              }
+              else{
+                Alert.alert("Attenzione", res.msg);
+              }
+              setSpinner(false);
         }
     }
     else {
@@ -40,6 +58,7 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../assets/images/logo.jpg")} />
+      <Text style={{ fontSize: 26, fontWeight: 'bold',marginBottom:15 }}>1,2,3 Maglia</Text>
 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
@@ -76,7 +95,7 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
       </View>
 
       <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
+        <Text style={styles.forgot_button}>Recupera Password?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.loginBtn} onPress={loginPressed}>
@@ -85,6 +104,11 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
       <TouchableOpacity style={{marginTop:15}} onPress={() => navigation.navigate('Registration')}>
         <Text style={styles.register_button}>Non sei ancora registrato? Registrati ora!</Text>
       </TouchableOpacity>
+      
+      <View style={{ height: '4%', alignSelf:'flex-end', marginRight:5}}>
+          <Text style={{ marginRight:10, alignSelf:'flex-end' }}>V. {globalVariables.Version}</Text>
+      </View>
+
     </View>
   );
 }
@@ -102,7 +126,7 @@ const styles = StyleSheet.create({
   image: {
     width:150,
     height:150,
-    marginBottom: 40,
+    marginBottom: 30,
   },
 
   inputView: {
@@ -135,7 +159,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 35,
     backgroundColor: "#0066ff",
   },
 });
