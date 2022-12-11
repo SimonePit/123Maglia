@@ -1,41 +1,16 @@
 {
   "expo": {
     "slug": "123Maglia",
-    "name": "1,2,3 Maglia",
+    "name": "123Maglia",
     "sdkVersion": "46.0.0",
-    "privacy": "public",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "1.1",
-    "updates": {
-      "fallbackToCacheTimeout": 10
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.easit.sarti",
-      "buildNumber": "1",
-      "icon":"./assets/images/appstoreicon.png",
-      "config": {
-      },
-      "infoPlist": {
+    "extra": {
+      "eas": {
+        "projectId": "c94c27d9-e183-4448-b928-51800ab528fe"
       }
     },
     "android": {
-      "package": "com.easit.sarti",
-      "versionCode": 1,
-      "useNextNotificationsApi":true,
-      "config": {
-      },
-      "permissions": [
-      ]
-    },
-    "description": ""
+      "package": "com.easit.maglia"
+    }
   },
-  "name": "1,2,3 Maglia"
+  "name": "1..2..3..Maglia!"
 }
